@@ -6,7 +6,7 @@
   "permissions": ["tabs", "*://*.youtube.com/*"],
   "content_scripts": [{
     "matches": ["*://*.youtube.com/watch*"],
-    "run_at":"document_end",
+    "run_at":"document_start",
     "js": ["inject.js"]
   }]
 }
