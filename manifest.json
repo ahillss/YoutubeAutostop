@@ -11,6 +11,6 @@
   }],
   "web_accessible_resources": [{
     "resources": [ "myscript.js" ],
-    "matches": [ "*://*.youtube.com/*" ]
+    "matches": [ "<all_urls>" ]
   }]
 }
