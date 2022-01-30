@@ -1,27 +1,41 @@
-var checkExist = setInterval(() => {
+function get_player() {
     var c = document.querySelector(".html5-video-container");
     var aElement = c && c.querySelector('video');
     var ytplayer = aElement && aElement.parentNode && aElement.parentNode.parentNode;
-    
-    if(ytplayer) {
-        var vid = ytplayer.getVideoData().video_id;
-        //aElement.simPlay = false; //dunno if this does anything
-        ytplayer.cueVideoById(vid, ytplayer.getCurrentTime());
-        
-        var seekTo = ytplayer.seekTo;
-        var playVideo = ytplayer.playVideo;
+    return ytplayer;
+}
 
-        ytplayer.playVideo = () => {};
-        ytplayer.seekTo = (tm) => {ytplayer.cueVideoById(vid, tm);};
+function go() {
+    var checkExist = setInterval(() => {
+        var ytplayer = get_player();
         
-        ytplayer.addEventListener("onStateChange", function onstate(a) {
-            if (a != -1) {
-                ytplayer.playVideo = playVideo;
-                ytplayer.seekTo = seekTo;
-                ytplayer.removeEventListener("onStateChange", onstate);
-            }
-        });
-        
-        clearInterval(checkExist);
+        if(ytplayer) {
+            var vid = ytplayer.getVideoData().video_id;
+            ytplayer.cueVideoById(vid, ytplayer.getCurrentTime());
+            
+            var seekTo = ytplayer.seekTo;
+            var playVideo = ytplayer.playVideo;
+
+            ytplayer.playVideo = () => {};
+            ytplayer.seekTo = (tm) => {ytplayer.cueVideoById(vid, tm);};
+            
+            ytplayer.addEventListener("onStateChange", function onstate(a) {
+                if (a != -1) {
+                    ytplayer.playVideo = playVideo;
+                    ytplayer.seekTo = seekTo;
+                    ytplayer.removeEventListener("onStateChange", onstate);
+                }
+            });
+            
+            clearInterval(checkExist);
+        }
+    }, 100);
+}
+
+document.addEventListener('yt-navigate-finish', ()=>{
+    if (location.pathname.startsWith('/watch')) {
+        go();
     }
-}, 100);
+});
+
+go();
