@@ -6,6 +6,10 @@ function get_player() {
 }
 
 function go() {
+    if(!location.pathname.match("(^/watch$)|(^/[uc][^/]*/[^/]+(/featured)?$)")) {
+        return;
+    }
+    
     var checkExist = setInterval(() => {
         var ytplayer = get_player();
         
@@ -32,10 +36,6 @@ function go() {
     }, 100);
 }
 
-document.addEventListener('yt-navigate-finish', ()=>{
-    if (location.pathname.startsWith('/watch')) {
-        go();
-    }
-});
+document.addEventListener('yt-navigate-finish', go);
 
 go();

@@ -5,7 +5,7 @@
   "description": "Loads youtube videos in the unstarted state",
   "host_permissions": [ "*://*.youtube.com/*" ],
   "content_scripts": [{
-    "matches": [ "*://*.youtube.com/watch*" ],
+    "matches": [ "*://*.youtube.com/*" ],
     "run_at":"document_start",
     "js": [ "inject.js" ]
   }],
