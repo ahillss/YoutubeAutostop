@@ -1,0 +1,12 @@
+{
+  "manifest_version": 2,
+  "version": "1.0",
+  "name": "Youtube Autostop",
+  "description": "Loads youtube videos in the unstarted state",
+  "permissions": ["tabs", "*://*.youtube.com/*"],
+  "content_scripts": [{
+    "matches": ["*://*.youtube.com/watch*"],
+    "run_at":"document_end",
+    "js": ["inject.js"]
+  }]
+}
