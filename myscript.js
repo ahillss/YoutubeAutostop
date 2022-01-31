@@ -25,5 +25,5 @@
     }
 
     go();
-    document.addEventListener('yt-navigate-finish', ((b=false)=>{return (()=>{if(b) go(); b=true;});})());
+    document.addEventListener('yt-navigate-finish', ((b=false)=>(()=>{if(b) go(); b=true;}))());
 })();
