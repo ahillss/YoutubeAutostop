@@ -1,5 +1,5 @@
 (()=>{
-    function doThing() {
+    function go() {
         if(!location.pathname.match("(^/watch$)|(^/[uc][^/]*/[^/]+(/featured)?$)")) {
             return;
         }
@@ -24,14 +24,7 @@
         }, 100);
     }
 
+    go();
     var bla=false;
-    function doThang() {
-        if(bla) {
-            doThing();
-        }
-        bla=true;
-    }
-
-    doThing();
-    document.addEventListener('yt-navigate-finish', doThang);
+    document.addEventListener('yt-navigate-finish', ()=>{ if(bla) { go(); } bla=true; });
 })();
