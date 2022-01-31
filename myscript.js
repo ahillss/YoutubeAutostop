@@ -7,9 +7,7 @@ function go() {
         var vs = document.querySelectorAll("video");
         
         if(vs.length!=0) {
-             setTimeout(() => {
-                 clearInterval(checkExist);
-            }, 1500);
+             setTimeout(() => { clearInterval(checkExist); }, 3000);
         }
         
         vs.forEach((v,i)=>{
@@ -17,11 +15,9 @@ function go() {
             
             if(!p.myDone) {
                 p.myDone=true;
+                p.playVideo = () => {};
                 p.cueVideoById(p.getVideoData().video_id,p.getCurrentTime());
-                
-                setTimeout(() => {
-                    p.myDone=false;
-                }, 2000);
+                setTimeout(() => { p.myDone=false; }, 4000);
             }
         });
     }, 100);
