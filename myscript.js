@@ -25,6 +25,5 @@
     }
 
     go();
-    var bla=false;
-    document.addEventListener('yt-navigate-finish', ()=>{ if(bla) { go(); } bla=true; });
+    document.addEventListener('yt-navigate-finish', ((b=false)=>{return (()=>{if(b) go(); b=true;});})());
 })();
