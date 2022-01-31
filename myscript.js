@@ -1,27 +1,37 @@
-function go() {
-    if(!location.pathname.match("(^/watch$)|(^/[uc][^/]*/[^/]+(/featured)?$)")) {
-        return;
-    }
-    
-    var checkExist = setInterval(() => {
-        var vs = document.querySelectorAll("video");
-        
-        if(vs.length!=0) {
-             setTimeout(() => { clearInterval(checkExist); }, 3000);
+(()=>{
+    function doThing() {
+        if(!location.pathname.match("(^/watch$)|(^/[uc][^/]*/[^/]+(/featured)?$)")) {
+            return;
         }
         
-        vs.forEach((v,i)=>{
-            var p = v.parentNode.parentNode;
+        var checkExist = setInterval(() => {
+            var vs = document.querySelectorAll("video");
             
-            if(!p.myDone) {
-                p.myDone=true;
-                p.playVideo = () => {};
-                p.cueVideoById(p.getVideoData().video_id,p.getCurrentTime());
-                setTimeout(() => { p.myDone=false; }, 4000);
+            if(vs.length!=0) {
+                 setTimeout(() => { clearInterval(checkExist); }, 1000);
             }
-        });
-    }, 100);
-}
+            
+            vs.forEach((v,i)=>{
+                var p = v.parentNode.parentNode;
+                
+                if(!p.myDone) {
+                    p.myDone=true;
+                    p.playVideo = () => {};
+                    p.cueVideoById(p.getVideoData().video_id,p.getCurrentTime());
+                    setTimeout(() => { p.myDone=false; }, 2000);
+                }
+            });
+        }, 100);
+    }
 
-go();
-document.addEventListener('yt-navigate-finish', go);
+    var bla=false;
+    function doThang() {
+        if(bla) {
+            doThing();
+        }
+        bla=true;
+    }
+
+    doThing();
+    document.addEventListener('yt-navigate-finish', doThang);
+})();
