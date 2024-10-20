@@ -1,8 +1,8 @@
 (()=>{
     function go() {
-        if(!location.pathname.match("(^/watch$)|(^/[uc][^/]*/[^/]+(/featured)?$)")) {
-            return;
-        }
+        //if(!location.pathname.match("(^/watch$)|(^/[uc][^/]*/[^/]+(/featured)?$)")) {
+        //    return;
+        //}
         
         var checkExist = setInterval(() => {
             var vs = document.querySelectorAll("video");

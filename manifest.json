@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "1.0",
+  "version": "1.1",
   "name": "Youtube Autostop",
   "description": "Loads youtube videos in the unstarted state",
   "host_permissions": [ "*://*.youtube.com/*" ],
